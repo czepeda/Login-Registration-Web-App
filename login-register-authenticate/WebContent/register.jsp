@@ -2,22 +2,40 @@
 
 <html>
 
-<head>
+<head></head>
+
 	<link type="text/css" rel="stylesheet" href="css/style.css">
 	<link type="text/css" rel="stylesheet" href="css/add-student-style.css">	
 </head>
 
 <body>
-<h1>Login</h1>
+<h1>Register</h1>
 
 
 
 <form action="LoginRegistrationServlet" method="POST">
 
-    <input type="hidden" name="command" value="AUTHENTICATE" /> 
+    <input type="hidden" name="command" value="REGISTER" /> 
             
 <table>
 	<tbody>
+	
+	
+	<tr>
+		<td><label>First Name:</label></td>
+		<td><input type="text" name="firstName" /></td>
+	 </tr>
+	 
+	 <tr>
+	 	<td><label>Last Name:</label></td>
+	 	<td><input type="text" name="lastName" /></td>
+	 </tr>
+	
+	<tr>
+		<td><label>Email:</label></td>
+		<td><input type="text" name="email" /></td>
+	 </tr>
+	
 	 <tr>
 		<td><label>User Name:</label></td>
 		<td><input type="text" name="userName" /></td>
@@ -27,16 +45,16 @@
 	 	<td><label>Password:</label></td>
 	 	<td><input type="password" name="password" /></td>
 	 </tr>
-	 
+	  
 	 <tr>
 	 	<td><label></label></td>
-	 	<td><input type="submit" value="Login" class="save" /> <td>
+	 	<td><input type="submit" value="Register" class="save" /> <td>
 	 </tr>
 
       <tr>
-         <td><label>Register?</label></td>
-	     <td><input type="button" value="Not Registered?"
-                onclick="window.location.href='register.jsp';return false;"
+        <td><label>Registered?</label></td>
+	    <td><input type="button" value="Click here to Login"
+                onclick="window.location.href='login.jsp';return false;"
                 class="save" /></td>
 	 </tr>
 	 

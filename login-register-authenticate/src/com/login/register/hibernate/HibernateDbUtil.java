@@ -33,6 +33,7 @@ public class HibernateDbUtil {
 	}
 
 	public boolean authenticateUser(String userName, String password) {
+		// boolean that will be assigned authentication value
 		boolean authenticated = false;
 
 		// get a session
@@ -63,6 +64,83 @@ public class HibernateDbUtil {
 		}
 
 		return authenticated;
+
+	}
+
+	public boolean registerUser(User user) {
+		// boolean that will be returned to see if registration was succesful
+		boolean register = false;
+
+		// query user_table for student object where user_id = 'userName' of the
+		// User object being passed in
+		// true userName is not available
+		User userAlreadyExist = null;
+
+		try {
+			// get a session
+			this.session = getCurrentFactorySession();
+
+			// start a transaction
+			session.beginTransaction();
+
+			userAlreadyExist = (User) session.createQuery("from User where user_id='" + user.getUserId() + "'")
+					.uniqueResult();
+
+			// commit transaction
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println("Could not query data user does not Exist!");
+			e.printStackTrace();
+		}
+
+		String emptyString = "";
+
+		if (userAlreadyExist != null) {
+			System.out.println("Username taken!");
+			register = false;
+			return register;
+		} else if ((user.getFirstName().equals(emptyString)) || (user.getLastName().equals(emptyString))
+				|| (user.getEmail().equals(emptyString)) || (user.getUserId().equals(emptyString))
+				|| (user.getPassword().equals(emptyString))) {
+			// one of the variables or all are empty
+			System.out.println("One or all variables are blank!");
+			register = false;
+			return register;
+		} else {
+			// if user doesn't exist make a new connection and input the user
+			// into the table
+			register = true;
+			
+			// user object that will be registered into the DB
+			User userToRegister = user;
+
+			// hash the user password by calling the MD5Hash class and passing
+			// in the password from the user object
+			String hashedPassword = MD5Hash.md5(user.getPassword());
+
+			// set the hashed password into the User object that will be
+			// inserted into the DB
+			userToRegister.setPassword(hashedPassword);
+
+			// get a session
+			this.session = getCurrentFactorySession();
+
+			// start a transaction
+			session.beginTransaction();
+
+			// save the User object
+			try {
+				System.out.println("Saving the user.");
+				session.save(userToRegister);
+				// commit transaction
+				session.getTransaction().commit();
+			} catch (Exception e) {
+				System.out.println("Could not insert data!");
+				e.printStackTrace();
+			}
+
+			return register;
+		}
 
 	}
 

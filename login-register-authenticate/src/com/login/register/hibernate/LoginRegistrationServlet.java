@@ -52,18 +52,17 @@ public class LoginRegistrationServlet extends HttpServlet {
 
 	private void authenticateCredentials(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		// get userName and password from from login.jsp file
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");
 
-		// boolean that will be assigned authentication value 
+		// boolean that will be assigned authentication value
 		boolean authenticated = false;
-		
+
 		// boolean using util object to get authentication
 		authenticated = utilityConn.authenticateUser(userName, password);
-		
-		
+
 		RequestDispatcher dispatcher;
 
 		if (authenticated) {
@@ -84,8 +83,36 @@ public class LoginRegistrationServlet extends HttpServlet {
 
 	}
 
-	private void registrationPage(HttpServletRequest request, HttpServletResponse response) {
+	private void registrationPage(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
+		// get firstName, lastName, email, userName, and password from from
+		// register.jsp file
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
+		String email = request.getParameter("email");
+		String userName = request.getParameter("userName");
+		String password = request.getParameter("password");
+		
+
+		// boolean that will assign if user is registration is valid
+		boolean registered = false;
+
+		// create a User object to regsiter
+		User user = new User(firstName, lastName, email, userName, password);
+
+		// boolean using util object to get registration valid
+		registered = utilityConn.registerUser(user);
+
+		RequestDispatcher dispatcher;
+
+		if (registered) {
+			dispatcher = request.getRequestDispatcher("/WEB-INF/JSP Files/registrationSuccesful.jsp");
+		} else {
+			dispatcher = request.getRequestDispatcher("/WEB-INF/JSP Files/registrationUnsuccessful.jsp");
+		}
+
+		dispatcher.forward(request, response);
 	}
 
 	private void loginPage(HttpServletRequest request, HttpServletResponse response)

@@ -28,7 +28,6 @@ public class MD5Hash {
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
-		System.out.println(md5);
 		return md5;
 	}
 }

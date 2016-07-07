@@ -33,11 +33,12 @@
 	 	<td><input type="submit" value="Login" class="save" /> <td>
 	 </tr>
 
-      <tr>
-         <td><label>Register?</label></td>
-	     <td><input type="button" value="Not Registered?"
+         <tr>
+                <td><label>Register?</label></td>
+	 <td>	<input type="button" value="Not Registered?"
                 onclick="window.location.href='register.jsp';return false;"
                 class="save" /></td>
+	 	
 	 </tr>
 	 
 	</tbody>

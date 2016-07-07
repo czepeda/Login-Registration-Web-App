@@ -1,14 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <html>
-
 <head>
 	<link type="text/css" rel="stylesheet" href="css/style.css">
 	<link type="text/css" rel="stylesheet" href="css/add-student-style.css">	
 </head>
 
 <body>
-<h1>Login</h1>
+<h1>Registration Successful Please Login</h1>
 
 
 
