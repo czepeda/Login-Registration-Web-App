@@ -4,7 +4,7 @@
 
 <head>
 	<link type="text/css" rel="stylesheet" href="css/style.css">
-	<link type="text/css" rel="stylesheet" href="css/add-student-style.css">	
+	<link type="text/css" rel="stylesheet" href="css/add-user-style.css">	
 </head>
 
 <body>
